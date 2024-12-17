@@ -6,35 +6,36 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
-project
+```
+project/
 │
-├── notebooks                       # Contains Jupyter notebooks
+├── notebooks/                      # Contains Jupyter notebooks
 │   └── example.ipynb               # Notebook
 │
-├── src                             # Main project source code
+├── src/                            # Main project source code
 │   ├── __init__.py
-│   ├── models                      # Saved trained models
+│   ├── models/                     # Saved trained models
 │   │   ├── model.pkl               # Model serialized with pickle
 │   │   └── model_loader.py         # Script to load models
 │   │
-│   ├── api                         # REST API
+│   ├── api/                        # REST API
 │   │   ├── __init__.py
 │   │   ├── app.py                  # Main API code (FastAPI/Flask)
 │   │   └── utils.py                # Utility functions for the API
 │   │
-│   ├── frontend                    # User interface (Streamlit/Gradio)
+│   ├── frontend/                   # User interface (Streamlit/Gradio)
 │   │   ├── __init__.py
 │   │   └── app_streamlit.py        # Application with Gradio or Streamlit
 │   │
-│   └── configs                     # Project configuration
+│   └── configs/                    # Project configuration
 │       ├── config.yaml             # Configuration file
 │       └── settings.py             # Python configuration
 │
-├── data                            # Folder for training data
-│   ├── raw                         # Raw data
-│   └── processed                   # Preprocessed data
+├── data/                           # Folder for training data
+│   ├── raw/                        # Raw data
+│   └── processed/                  # Preprocessed data
 │
-├── tests                           # Unit and integration tests
+├── tests/                          # Unit and integration tests
 │   ├── test_api.py                 # Tests for the API
 │   ├── test_models.py              # Tests for models
 │   └── test_utils.py               # Tests for utility functions
@@ -46,3 +47,4 @@ project
 │
 ├── Dockerfile                      # Dockerfile for building the application
 └── docker-compose.yml              # Docker Compose to manage containers
+```
