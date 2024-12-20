@@ -7,9 +7,15 @@ source .venv/bin/activate
 pip install -r requirements.txt
     ex: pip install "fastapi[satadard]"
 
-docker build -t docker_api .    # Build the Docker image
-docker images                   # check if the image is available locally
-docker run -it --rm docker_api  # Run the Docker image
+# Build the docker
+docker build -t docker_api .                    # Build the Docker image
+docker images                                   # check if the image is available locally
+
+# Run the Docker image with port mapping to expose the API outside the container
+docker run -it --rm -p 8000:8000 docker_api     
+
+# Run the frontend (streamlit app)
+streamlit run app_streamlit.py
 
 
 ```
