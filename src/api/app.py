@@ -8,17 +8,17 @@ import sys
 import os
 
 # Add the project root directory to sys.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 # Import from src
-from src.models.model import ModelHandler
+from models.model import ModelHandler
 
 # Init a FastAPI container
 app: FastAPI = FastAPI()
 
 # Resolve the model path
 current_dir: str = os.path.dirname(os.path.abspath(__file__))
-model_path: str = os.path.join(current_dir, "..", "models", "artifacts", "sentimentAnalysis_model.h5")
+model_path: str = os.path.join(current_dir, "models", "artifacts", "sentimentAnalysis_model.h5")
 
 # Load the model
 print(f"Loading model from {model_path}")

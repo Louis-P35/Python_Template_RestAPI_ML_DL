@@ -7,15 +7,26 @@ source .venv/bin/activate
 pip install -r requirements.txt
     ex: pip install "fastapi[satadard]"
 
-# Build the docker
+
+# Build and run both backend & frontend
+docker-compose up --build
+
+# Build the api docker
+cd src/api
 docker build -t docker_api .                    # Build the Docker image
 docker images                                   # check if the image is available locally
 
 # Run the Docker image with port mapping to expose the API outside the container
-docker run -it --rm -p 8000:8000 docker_api     
+docker run -it --rm -p 8000:8000 docker_api
 
-# Run the frontend (streamlit app)
+# Build the frontend docker
+cd src/frontend
+docker build -t streamlit_frontend .
+
+# Run the frontend (streamlit app) without docker
 streamlit run app_streamlit.py
+# Run the frontend (streamlit app) docker
+docker run -it --rm -p 8501:8501 streamlit_frontend
 
 
 ```
@@ -32,11 +43,18 @@ project/
 │   ├── api/                        # REST API
 │   │   ├── __init__.py
 │   │   ├── app.py                  # Main API code (FastAPI/Flask)
-│   │   └── utils.py                # Utility functions for the API
+│   │   ├── utils.py                # Utility functions for the API
+│   │   ├── models/                 # Model-specific utilities
+│   │   │   │── trained_model.h5    # Example trained model file
+│   │   │   └── model_loader.py         # Script to load models
+│   │   ├── requirements.txt        # Dependencies for the API
+│   │   └── Dockerfile              # Dockerfile for the API service
 │   │
 │   ├── frontend/                   # User interface (Streamlit/Gradio)
 │   │   ├── __init__.py
-│   │   └── app_streamlit.py        # Application with Gradio or Streamlit
+│   │   ├── app_streamlit.py        # Main Streamlit/Gradio app
+│   │   ├── requirements.txt        # Dependencies for the frontend
+│   │   └── Dockerfile              # Dockerfile for the frontend service
 │   │
 │   └── configs/                    # Project configuration
 │       ├── config.yaml             # Configuration file
@@ -56,6 +74,5 @@ project/
 ├── README.md                       # Main documentation
 ├── setup.py                        # Project installation script
 │
-├── Dockerfile                      # Dockerfile for building the application
 └── docker-compose.yml              # Docker Compose to manage containers
 ```
