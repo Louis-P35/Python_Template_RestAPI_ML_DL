@@ -5,6 +5,12 @@ This is a template of a Python Rest API project for machine learning / deep lear
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+    ex: pip install "fastapi[satadard]"
+
+docker build -t docker_api .    # Build the Docker image
+docker images                   # check if the image is available locally
+docker run -it --rm docker_api  # Run the Docker image
+
 
 ```
 project/
@@ -15,7 +21,6 @@ project/
 ├── src/                            # Main project source code
 │   ├── __init__.py
 │   ├── models/                     # Saved trained models
-│   │   ├── model.pkl               # Model serialized with pickle
 │   │   └── model_loader.py         # Script to load models
 │   │
 │   ├── api/                        # REST API
